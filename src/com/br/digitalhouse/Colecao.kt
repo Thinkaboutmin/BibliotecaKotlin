@@ -1,4 +1,4 @@
 package com.br.digitalhouse
 
-class Colecao {
-}
+class Colecao(val codigo : Int)
+

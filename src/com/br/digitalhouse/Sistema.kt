@@ -4,36 +4,59 @@ package com.br.digitalhouse
 
 class Sistema(){
 
-    val livros =  mutableListOf<Livro>()
-    val colecoes =  mutableListOf<Colecao>()
+    private val listaLivro =  mutableListOf<Livro>()
+    private val listaColecoes =  mutableListOf<Colecao>()
 
 
     fun cadastrarLivro(livro: Livro){
-        livros.add(livro)
-        println("Novo livro adicionado na lista")
-        println(livro)
+        listaLivro.add(livro)
 
     }
 
     fun cadastrarColecao(colecao: Colecao){
-        colecoes.add(colecao)
-        println("A colecao foi adicionada")
-        println(colecoes)
-    }
-
-    fun consultarLivro(codigo: Int){
-        println(livros.get(codigo))
+        listaColecoes.add(colecao)
 
     }
 
-    fun consultarColecao(codigo: Int): Colecao{
-        println(livros[codigo])
-        return 0
+    fun consultarLivro(cod:Int) {
+        this.listaLivro.forEach {
+            when (it.codigo == cod) {
 
-    }
+            }
+            println(it)
 
-    fun efetuarVenda(codigo: Int): Int {
-        return 0
+            }
 
+    fun consultarColecao(cod: Int){
+
+        this.listaColecoes.forEach {
+            when (it.codigo == cod) {
+
+            }
+            println(it)
+
+
+    fun efetuarVenda(cod: Int) {
+
+        this.listaLivro.forEach{
+            when (it.codigo == cod) {
+                true -> {
+                    when (it.quantidadeEmEstoque <= 0) {
+                        true -> {
+                            println("Produto esgotado")
+                        }
+                    }
+                }
+
+                false -> {
+                    it.quantidadeEmEstoque--
+                }
+
+
+            }
+        }
+                }
+            }
+        }
     }
 }
