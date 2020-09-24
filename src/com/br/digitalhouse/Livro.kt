@@ -1,4 +1,9 @@
 package com.br.digitalhouse
 
- class Livro(val titulo: Int, val preco: Int, var quantidadeEmEstoque: Int,val anoDeLancamento: String,val autor: Double,val codigo: Int) {
- }
+data class Livro(val codigo: Int, val autor: String, val anoDeLancamento: java.util.Date, val quantidadeEmEstoque: Int, val preco: Double, val titulo: String) {
+    fun validar() {
+        if (this.preco < 0 || this.quantidadeEmEstoque < 0)
+            return "Digite valores válidos"
+
+    }
+}
