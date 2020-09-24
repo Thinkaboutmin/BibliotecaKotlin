@@ -1,62 +1,65 @@
 package com.br.digitalhouse
 
-
-
 class Sistema(){
-
-    private val listaLivro =  mutableListOf<Livro>()
-    private val listaColecoes =  mutableListOf<Colecao>()
+    private val livros =  mutableListOf<Livro>()
+    private val colecoes =  mutableListOf<Colecao>()
 
 
     fun cadastrarLivro(livro: Livro){
-        listaLivro.add(livro)
-
+        if (!livros.contains(livro)) {
+            livros.add(livro)
+        } else {
+            println("Livro já cadastrado")
+        }
     }
 
     fun cadastrarColecao(colecao: Colecao){
-        listaColecoes.add(colecao)
-
+        if (!colecoes.contains(colecao)) {
+            colecoes.add(colecao)
+        } else {
+            println("Coleção já cadastrada")
+        }
     }
 
-    fun consultarLivro(cod:Int) {
-        this.listaLivro.forEach {
-            when (it.codigo == cod) {
+    fun consultarLivro(cod:Int): Livro? {
+        val livro = livros.find { it.codigo == cod }
 
+        return livro
+    }
+
+    fun consultarColecao(cod: Int): Colecao? {
+        val colecao = colecoes.find {it.codigo == cod}
+
+        return colecao
+    }
+
+    fun efetuarVendaLivro(cod: Int) {
+        val livro = livros.find {it.codigo == cod}
+        if (livro != null) {
+            if (livro.quantidadeEmEstoque > 0) {
+                --livro.quantidadeEmEstoque
+                println("Livro vendido")
+            } else {
+                println("Livro esgotado.")
             }
-            println(it)
-
-            }
-
-    fun consultarColecao(cod: Int){
-
-        this.listaColecoes.forEach {
-            when (it.codigo == cod) {
-
-            }
-            println(it)
-
-
-    fun efetuarVenda(cod: Int) {
-
-        this.listaLivro.forEach{
-            when (it.codigo == cod) {
-                true -> {
-                    when (it.quantidadeEmEstoque <= 0) {
-                        true -> {
-                            println("Produto esgotado")
-                        }
-                    }
-                }
-
-                false -> {
-                    it.quantidadeEmEstoque--
-                }
-
-
-            }
+        } else {
+            println("Livro não disponivel")
         }
+    }
+
+    fun efetuarVendaColecao(cod: Int) {
+        val colecao = colecoes.find {it.codigo == cod}
+        if (colecao != null) {
+            for (livro in colecao.lista) {
+                if (livro.quantidadeEmEstoque > 0) {
+                    --livro.quantidadeEmEstoque
+                    println("Coleção vendida")
+                } else {
+                    println("Coleção esgotada")
                 }
             }
+        } else {
+            println("Coleção não disponivel")
         }
     }
 }

@@ -1,4 +1,4 @@
 package com.br.digitalhouse
 
-class Usuario(val sistema: Sistema) {
+data class Usuario(val sistema: Sistema) {
 }

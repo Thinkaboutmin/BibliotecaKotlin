@@ -11,8 +11,16 @@ data class Colecao(val lista:MutableList<Livro>,val codigo:Int,val preco:Double,
             return "O preco está negativo"
         } else if (this.descricao.isEmpty()){
             return "A descrição está vazia"
-        }else
-            return ""
+        }
+
+        for (livro in lista) {
+            val erro = livro.validar()
+            if (erro != "") {
+                return erro
+            }
+        }
+
+        return ""
     }
 
 }
